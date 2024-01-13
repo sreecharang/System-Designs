@@ -158,3 +158,5 @@ We can look into the mode details like:
 <p align="center">
   <img src="./pdf/system-design-app-v3.png" alt="Final design" width="738">
 </p>
+
+Reference [reference](https://www.youtube.com/watch?v=R_agd5qZ26Y)
