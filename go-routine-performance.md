@@ -134,13 +134,13 @@
 
 * &result[i] is pointer to the result address. 
 
-* We are giving everything, we just providing the index of specific memory address. so it alter only one index address. 
+* We are not giving everything, we just providing the index of specific memory address. so it alter only one index address. 
 
 * Basically, Go routine can't access other indexes of slice. Go routine confine to specific index of the result. 
 
 * Confinement, is an idea ensuring information only avaialble one concurrent go routine. 
 
-* We don't need to use the synchronization for race condition, Since the goroutine can bale access the specific index of the result slice. 
+* We don't need to use the synchronization for race condition, Since the goroutine can able access the specific index of the result slice. 
 
 Code snippet as follows: 
 
