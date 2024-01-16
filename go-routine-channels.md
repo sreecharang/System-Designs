@@ -186,6 +186,7 @@
 
 * Fan In, Fan Out channels can be noted as below: 
 
+### main.go file.
 ```
     // fan out 
 
@@ -210,6 +211,51 @@
 ```
     fannedInStream := fanIn(done, primeFinderChannels...)
 ```
+
+### FanIn Function 
+
+
+```
+func fanIn[T any](done <-chan int, channels ...<-chan T) <-chan T {
+	var wg sync.WaitGroup 
+	fannedInStream := make(chan T)
+
+	transfer := func(c <-chan T) {
+		defer wg.Done()
+		for i := range c {
+			select {
+			case <- done:
+				return
+			case fannedInStream <- i:
+
+			}
+		}
+	}
+
+	for _, c := range channels {
+		wg.Add(1)
+		go transfer(c)
+	}
+
+	go func() {
+		wg.Wait()
+		close(fannedInStream)
+	}()
+
+	return fannedInStream
+}
+```
+
+* fanIn function is an generic, It takes done channel, all channels. 
+
+* We use wait group, fanned In channel with fannedInStream. This function will just call this one transfer because it just going to transfer data from one channel to another channel. 
+
+* Here all channels has resulting primes, These resulting will pass it single channel. all result will end up at fannedInStream. 
+
+* We add wait group of Wait, Once received all the transfer will finished, and go routine will close the fannedInStream. 
+
+* 
+
 
 
 ## Output 
