@@ -63,7 +63,7 @@
 
 
 <p align="center">
-  <img src="./pdf/go-routines-pipelines.png" alt="go routine pipelines" width="738">
+  <img src="./pdf/go-routines-pipelines.png" alt="go routine pipelines" width="400">
 </p>
 
 
